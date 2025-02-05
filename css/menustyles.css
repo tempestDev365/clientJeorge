@@ -1,0 +1,243 @@
+:root {
+    --bg-black: #252525;
+    --bg-light-1: #FAEDD5;
+    --bg-light-2: #EBDBBD;
+    --bg-white: #f5f3f0;
+    --text-color-active: #D1AA62;
+    --title-color-light: #E3CCA1;
+    --text-color-light: #FAEDD5;
+    --text-color-white: #faf7f0;
+    --title-color-black: #252525;
+    --text-color-black: #383838;
+    --text-color-black-1: #5f5f5f;
+    --primary-color-1: #C6953B;
+    --hover-color-1: #8a6e1c;
+    --hover-color-2: #E3CCA1;
+
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    /* border: 1px red solid; */
+}
+
+
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: var(--text-color-white);
+    color: var(--text-color-black);
+}
+
+/* ----------Menu Section----------- */
+.menu-container {
+    max-width: 1200px;
+    height: 70vh;
+    margin: 20px auto;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.menu-header {
+    text-align: center;
+    font-size: 64px;
+    font-weight: bold;
+    padding-bottom: 0;
+}
+
+.menu-tabs {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.menu-tabs li {
+    margin: 0 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.menu-tabs .active {
+    border-bottom: 2px solid var(--bg-black);
+}
+
+.menu-holder {
+    padding: 0 0 50px 0;
+}
+.menu-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0;
+}
+
+.menu-title h5{
+   font-style: italic;
+   font-weight: 300;
+}
+
+.menu-list h2 {
+    margin-top: 25px;
+}
+
+.menu-items { 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.menu-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-card h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: bold;
+
+}
+
+.menu-card p {
+    margin: 0 0 15px;
+    color: var(--text-color-black);
+    font-size: 14px;
+    font-style: italic;
+}
+
+.menu-card .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-color-black);
+}
+
+.menu-card .add-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary-color-1);
+    color: var(--bg-white);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.menu-card .add-btn:hover {
+    background: var(--hover-color-1);
+}
+
+/*-----------------ORDER SUMMARY SECTION---------------*/
+
+.order-summary-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: var(--bg-light-2);
+    padding: 20px;
+}
+
+.order-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price-summary {
+    display: flex;
+   flex-direction: column;
+   justify-content: end;
+   align-items: end;
+   
+}
+
+.div-price, .div-total-price {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.div-total-price {
+    font-size: 20px;
+    color: red;
+    font-weight: bold;
+}
+.price-summary p {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.price-summary .checkout-btn {
+    width: 200px;
+    padding: 10px 15px;
+    font-size: 20px;
+    background-color: var(--primary-color-1);
+    color: var(--text-color-white);
+    border: 0;
+}
+
+.price-summary .checkout-btn:hover {
+    
+    background-color: var(--hover-color-1);
+   
+}
+.checkout-btn:disabled {
+    background-color: var(--text-color-black-1);
+}
+
+.checkout-btn:disabled:hover {
+    background-color: var(--text-color-black-1);
+}
+.div-item-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-item {
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.item-name {
+    width: 100%;
+}
+.item-quantity {
+    text-align: right;
+}
+.item-price {
+    text-align: right;
+}
+
+.item-quantity {
+   display: flex;
+   flex-direction: row  ;
+   gap: 20px;
+   justify-content: end;
+   align-items: center;
+}
+
+.item-quantity button{
+    width: 50px;
+    font-size: 24px;
+    border: 0;
+ }
+
+ .item-quantity button:hover{
+   background-color: var(--text-color-active);
+ }
+

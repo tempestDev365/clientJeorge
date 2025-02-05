@@ -1,0 +1,127 @@
+:root {
+    --bg-black: #252525;
+    --bg-light-1: #FAEDD5;
+    --bg-light-2: #EBDBBD;
+    --bg-white: #f5f3f0;
+    --text-color-active: #D1AA62;
+    --title-color-light: #E3CCA1;
+    --text-color-light: #FAEDD5;
+    --text-color-white: #faf7f0;
+    --title-color-black: #252525;
+    --text-color-black: #383838;
+    --text-color-black-1: #5f5f5f;
+    --primary-color-1: #C6953B;
+    --hover-color-1: #8a6e1c;
+    --hover-color-2: #E3CCA1;
+
+}
+
+.reservation-container {
+    display: flex;
+    max-width: 1200px;
+    height: 60vh;
+    justify-content: center;
+    align-items: center;
+    margin: auto auto;
+    gap: 0;
+}
+
+.image-section {
+    max-width: 500px;
+    height: 500px;
+}
+
+.form-section {
+    padding: 20px;
+}
+
+h2 {
+    color: var(--primary-color-1);
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, select {
+    padding: 10px;
+    border: 1px solid rgb(219, 219, 219);
+    font-size: 14px;
+}
+
+.row {
+    display: flex;
+ 
+}
+
+.row .form-group {
+    flex: 1;
+}
+
+
+.btn-book-a-table {
+    width: 100%;
+    background-color: var(--primary-color-1);
+    color: var(--text-color-white);
+    padding: 12px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-block: 20px;
+    
+}
+
+.btn-book-a-table a {
+    text-decoration: none;
+    color: var(--text-color-white);
+}
+
+.btn-book-a-table:hover {
+    background-color: var(--hover-color-1);
+}
+
+.btn-with-adv-order {
+    width: 100%;
+    background-color:transparent;
+    color: var(--primary-color-1);
+    padding: 12px;
+    border: 2px solid var(--primary-color-1);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-with-adv-order a {
+    text-decoration: none;
+    color: var(--primary-color-1)
+}
+
+.btn-with-adv-order:hover {
+    background-color: #9C7320;
+}
+
+
+@media (max-width: 991px) {
+
+    .image-section {
+       display: none;
+    }
+
+    .form-section {
+        padding: 40px 20px;
+    }
+    
+
+
+}
+
+
+

@@ -1,0 +1,257 @@
+:root {
+    --bg-black: #252525;
+    --bg-light-1: #FAEDD5;
+    --bg-light-2: #EBDBBD;
+    --text-color-active: #D1AA62;
+    --title-color-light: #E3CCA1;
+    --text-color-light: #FAEDD5;
+    --text-color-white: #faf7f0;
+    --title-color-black: #252525;
+    --text-color-black: #383838;
+    --text-color-black-1: #5f5f5f;
+    --primary-color-1: #C6953B;
+    --hover-color-1: #8a6e1c;
+    --hover-color-2: #E3CCA1;
+
+}
+
+
+.adv-order-reservation-form {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+    gap: 20px;
+    margin: 10px auto;
+    padding-left: 20px;
+}
+
+h3 {
+    color: var(--primary-color-1);
+    margin-bottom: 10px;
+}
+
+.input-div {
+    width: 100%;
+    padding-block: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input,
+select, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.row .form-group {
+    flex: 1;
+}
+
+.row .note {
+    font-size: 16px;
+    color: red;
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+.sub-message {
+    color: red;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.button-div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.button-div a {
+    width:100% ;
+}
+
+.button-div a button {
+    width:100% ;
+    padding: 15px 20px;
+    border: 2px solid var(--primary-color-1);
+    font-size: 18px;
+}
+
+.button-div a .btn-confirm {
+   color: var(--text-color-white);
+   background-color: var(--primary-color-1);
+}
+
+.button-div a .btn-confirm:hover {
+    background-color: var(--hover-color-1);
+ }
+
+ .button-div a .btn-cancel {
+    border: 2px solid var(--primary-color-1);
+    color: var(--primary-color-1);
+    background-color: transparent;
+ }
+ 
+ .button-div a .btn-cancel:hover {
+     background-color: var(--hover-color-1);
+  }
+
+.payment-div {
+    width: 100%;
+}
+
+.payment-section {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.payment-images {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.upload-section {
+    margin-top: 20px;
+}
+
+.upload-btn {
+    background-color: #007BFF;
+    color: var(--text-color-white);
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.upload-btn:hover {
+    background-color: #0056b3;
+}
+
+#reference-number {
+    width: 100%;
+}
+
+.payment-div .btn-confirm {
+    width: 100%;
+    border: none;
+    margin-top: 20px;
+    color: var(--text-color-white);
+    background-color: var(--primary-color-1);
+    padding: 15px 20px;
+    font-size: 18px;
+}
+
+.payment-div .btn-cancel {
+    width: 100%;
+    border: 2px solid var(--primary-color-1);
+    margin-top: 20px;
+    color: var(--primary-color-1);
+    background-color: transparent;
+    padding: 15px 20px;
+    font-size: 18px;
+}
+
+.payment-div .btn-cancel:hover {
+    background-color: var(--hover-color-1);
+}
+
+.payment-div .btn-confirm:hover {
+    background-color: var(--hover-color-1);
+}
+
+.btn-confirm a {
+    text-decoration: none;
+    color: var(--text-color-white);
+}
+
+.btn-cancel a {
+    text-decoration: none;
+    color: var(--primary-color-1);
+}
+#imagePreviewContainer {
+   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+.image-view {
+    max-width: 600px;
+    max-height: 600px;
+    object-fit: cover;
+}
+
+.remove-image {
+    width: 100px;
+    border: 0;
+    background-color: rgb(202, 16, 16);
+    color: var(--text-color-white);
+    border-radius: 5px;
+}
+
+
+/* ------------Order Summary Section -----------*/
+
+
+.order-summary-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: var(--bg-light-2);
+    padding: 20px;
+}
+
+
+
+
+@media (max-width: 991px) {
+
+    .adv-order-reservation-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .payment-div {
+        width: 80%;
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .payment-div {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .payment-images {
+        width: 100%;
+    }
+
+    .payment-images img {
+        width: 100%;
+    }
+
+}
