@@ -37,7 +37,7 @@
     <!-------------Nav Section------------->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a href="index.html">
+            <a href="index.php">
                 <img src="img/logo.png" class="img-fluid" alt="Smooth Day">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -47,13 +47,13 @@
             <div class="collapse navbar-collapse justify-content-center " id="navbarText">
                 <ul class="nav navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">HOME</a>
+                        <a class="nav-link" href="index.php">HOME</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#about-section">ABOUT US</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./pages/menu.html">MENU</a>
+                        <a class="nav-link" href="./pages/menu.php">MENU</a>
                     </li>
 
                     <li class="nav-item">
@@ -63,7 +63,7 @@
             </div>
 
             <button class="reserve-btn">
-                <a href="/pages/reservation.html">Reserve a Table</a>
+                <a href="/pages/reservation.php">Reserve a Table</a>
             </button>
 
         </div>
@@ -119,21 +119,21 @@
     <!-------------Options Section------------->
     <section class="options-section">
         <div class="options-div">
-            <a href="/pages/reservation.html">
+            <a href="/pages/reservation.php">
                 <div class="option-card">
                     <i class="fas fa-utensils"></i>
                     <h3>BOOK A TABLE</h3>
                     <p>Make a reservation in our restaurant.</p>
                 </div>
             </a>
-            <a href="/pages/adv-order-menu.html">
+            <a href="/pages/adv-order-menu.php">
                 <div class="option-card">
                     <i class="fas fa-concierge-bell"></i>
                     <h3>ADVANCE ORDER</h3>
                     <p>Make a reservation with advance order</p>
                 </div>
             </a>
-            <a href="/pages/menu.html">
+            <a href="/pages/menu.php">
                 <div class="option-card">
                     <i class="fas fa-shopping-cart"></i>
                     <h3>ORDER ONLINE</h3>
@@ -305,16 +305,16 @@
 
             <div class="footer-div">
                 <h3>Quick Links</h3>
-                <h4><a href="index.html">Home</a></h4>
+                <h4><a href="index.php">Home</a></h4>
                 <h4><a href="#about-section">About Us</a></h4>
-                <h4><a href="menu.html">Menu</a></h4>
+                <h4><a href="menu.php">Menu</a></h4>
                 <h4><a href="#contact-section">Contact Us</a></h4>
             </div>
 
             <div class="footer-div">
                 <h3>Services</h3>
-                <h4><a href="pages/reservation.html">Reserve a Table</a></h4>
-                <h4><a href="pages/menu.html">Order Online</a></h4>
+                <h4><a href="pages/reservation.php">Reserve a Table</a></h4>
+                <h4><a href="pages/menu.php">Order Online</a></h4>
             </div>
 
             <div class="footer-div">

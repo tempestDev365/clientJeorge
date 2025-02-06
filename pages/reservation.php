@@ -27,9 +27,9 @@
 
     <!-- CSS link -->
     <link rel="stylesheet" type="text/css" href="../css/main.css" />
-    <link rel="stylesheet" type="text/css" href="../css/menustyles.css" />
+    <link rel="stylesheet" type="text/css" href="../css/reservation.css" />
 
-    <title>Menu</title>
+    <title>Reservation</title>
 
 </head>
 
@@ -38,7 +38,7 @@
     <!------------Navbar Section------------->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a href="../index.html">
+            <a href="../index.php">
                 <img src="../img/logo.png" class="img-fluid" alt="Smooth Day">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -48,55 +48,85 @@
             <div class="collapse navbar-collapse justify-content-center " id="navbarText">
                 <ul class="nav navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="../index.html">HOME</a>
+                        <a class="nav-link" href="../index.php">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../index.html/#about-section">ABOUT US</a>
+                        <a class="nav-link" href="../index.php/#about-section">ABOUT US</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="menu.html">MENU</a>
+                        <a class="nav-link" href="adv-order-menu.php">MENU</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="../index.html/#contact-section">CONTACT US</a>
+                        <a class="nav-link" href="../index.php/#contact-section">CONTACT US</a>
                     </li>
                 </ul>
             </div>
 
             <button class="reserve-btn">
-                <a href="reservation.html">Reserve a Table</a>
+                <a href="reservation.php">Reserve a Table</a>
             </button>
 
         </div>
     </nav>
 
-    <!------------Menu Section------------->
-    <div class="menu-header">MENU</div>
-    <div class="menu-container">
-        <div class="menu-list" id="menu-list"></div>
-    </div>
 
-    <!-----------------ORDER SUMMARY SECTION--------------->
-    <section class="order-summary-container">
-        <div class="order-summary-header">
-            <h1>ORDER SUMMARY</h1>
-            <h5>Cart Items: <span id="cart-count">0</span></h5>
+    <!------------Reservation Section------------->
+    <div class="reservation-container">
+        <div class="image-section">
+            <img src="../img/image2.jpg" class="img img-fluid" alt="">
         </div>
-        <hr>
-
-        <div class="cart">
-            <div class="div-item-container" id="cart-items"></div>
-
-            <hr>
-            <div class="price-summary" id="price-summary">
-                <div class="div-price">
-                    <p class="subtotal-price">Subtotal:</p> <span id="subtotal-price">0</span>
+        <div class="form-section">
+            <h2>RESERVATION</h2>
+            <form id="reservation-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
                 </div>
-                <a href="online-order-payment.html"><button class="checkout-btn" id="checkout-btn" disabled
-                        onclick="checkout()">Checkout</button></a>
-            </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time</label>
+                        <select id="time" required>
+                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="2:00 PM">2:00 PM</option>
+                            <option value="4:00 PM">4:00 PM</option>
+                            <option value="6:00 PM">6:00 PM</option>
+                            <option value="8:00 PM">8:00 PM</option>
+                            <option value="10:00 PM">10:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="people">No. of People</label>
+                        <input type="text" id="people" placeholder="Enter no. of people" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Contact Number</label>
+                        <input type="text" id="contact" placeholder="Enter your contact number" required>
+                    </div>
+                </div>
+
+                <a href="transaction-processing.php">
+                    <button type="submit" class="btn-book-a-table">BOOK A TABLE ONLY</button>
+                </a>
+               
+            </form>
+            <a href="adv-order-menu.php">
+                <button type="button" class="btn-with-adv-order">BOOK WITH ADVANCE ORDER</button>
+            </a>
         </div>
-    </section>
+    </div>
 
     <!------------Footer Section------------->
     <footer class="footer-section">
@@ -112,16 +142,16 @@
 
             <div class="footer-div">
                 <h3>Quick Links</h3>
-                <h4><a href="/index.html">Home</a></h4>
-                <h4><a href="../index.html/#about-section">About Us</a></h4>
-                <h4><a href="menu.html">Menu</a></h4>
-                <h4><a href="../index.html/#contact-section">Contact Us</a></h4>
+                <h4><a href="/index.php">Home</a></h4>
+                <h4><a href="../index.php/#about-section">About Us</a></h4>
+                <h4><a href="menu.php">Menu</a></h4>
+                <h4><a href="../index.php/#contact-section">Contact Us</a></h4>
             </div>
 
             <div class="footer-div">
                 <h3>Services</h3>
-                <h4><a href="reservation.html">Reserve a Table</a></h4>
-                <h4><a href="menu.html">Order Online</a></h4>
+                <h4><a href="reservation.php">Reserve a Table</a></h4>
+                <h4><a href="menu.php">Order Online</a></h4>
             </div>
 
             <div class="footer-div">
@@ -143,7 +173,9 @@
 
     </footer>
 
-    <script src="../script/online-order-menu.js"></script>
+
+    <script src="../script/reservation.js"></script>
+
 
 </body>
 

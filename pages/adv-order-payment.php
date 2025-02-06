@@ -39,7 +39,7 @@
     <!------------Navbar Section------------->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a href="../index.html">
+            <a href="../index.php">
                 <img src="../img/logo.png" class="img-fluid" alt="Smooth Day">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -49,13 +49,13 @@
             <div class="collapse navbar-collapse justify-content-center " id="navbarText">
                 <ul class="nav navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="../index.html">HOME</a>
+                        <a class="nav-link" href="../index.php">HOME</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../index.html/#about-section">ABOUT US</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="adv-order-menu.html">MENU</a>
+                        <a class="nav-link" href="adv-order-menu.php">MENU</a>
                     </li>
 
                     <li class="nav-item">
@@ -65,7 +65,7 @@
             </div>
 
             <button class="reserve-btn">
-                <a href="reservation.html">Reserve a Table</a>
+                <a href="reservation.php">Reserve a Table</a>
             </button>
 
         </div>
@@ -172,7 +172,7 @@
                         <a>
                             <button type="submit" class="btn-confirm" onclick="confirmPayment()">CONFIRM PAYMENT</button>
                         </a>
-                        <a href="index.html">
+                        <a href="index.php">
                             <button type="button" class="btn-cancel">CANCEL</button>
                         </a>
                     </div>
@@ -219,16 +219,16 @@
 
             <div class="footer-div">
                 <h3>Quick Links</h3>
-                <h4><a href="/index.html">Home</a></h4>
+                <h4><a href="/index.php">Home</a></h4>
                 <h4><a href="../index.html/#about-section">About Us</a></h4>
-                <h4><a href="menu.html">Menu</a></h4>
+                <h4><a href="menu.php">Menu</a></h4>
                 <h4><a href="../index.html/#contact-section">Contact Us</a></h4>
             </div>
 
             <div class="footer-div">
                 <h3>Services</h3>
-                <h4><a href="reservation.html">Reserve a Table</a></h4>
-                <h4><a href="menu.html">Order Online</a></h4>
+                <h4><a href="reservation.php">Reserve a Table</a></h4>
+                <h4><a href="menu.php">Order Online</a></h4>
             </div>
 
             <div class="footer-div">

@@ -26,19 +26,16 @@
         rel="stylesheet">
 
     <!-- CSS link -->
-    <link rel="stylesheet" type="text/css" href="../css/main.css" /> <!--nav & footer-->
-    <link rel="stylesheet" type="text/css" href="../css/menustyles.css" />  <!--order summary-->
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
 
-    <title>Advance Order Menu</title>
+    <title>Menu</title>
 
 </head>
 
 <body>
-
-    <!------------Navbar Section------------->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a href="../index.html">
+            <a href="../index.php">
                 <img src="../img/logo.png" class="img-fluid" alt="Smooth Day">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -48,62 +45,43 @@
             <div class="collapse navbar-collapse justify-content-center " id="navbarText">
                 <ul class="nav navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="../index.html">HOME</a>
+                        <a class="nav-link" href="../index.php">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../index.html/#about-section">ABOUT US</a>
+                        <a class="nav-link" href="../index.php/#about-section">ABOUT US</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="adv-order-menu.html">MENU</a>
+                        <a class="nav-link" href="adv-order-menu.php">MENU</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="../index.html/#contact-section">CONTACT US</a>
+                        <a class="nav-link" href="../index.php/#contact-section">CONTACT US</a>
                     </li>
                 </ul>
             </div>
 
             <button class="reserve-btn">
-                <a href="reservation.html">Reserve a Table</a>
+                <a href="reservation.php">Reserve a Table</a>
             </button>
 
         </div>
     </nav>
 
-    <!------------Menu Section------------->
-    <div class="menu-header">MENU</div>
-    <div class="menu-container">
-        <div class="menu-list" id="menu-list"></div>
-    </div>
+    <section class="container-transaction">
+        <div class="text-transaction-container">
+            <img src="/img/check-icon.png" alt="">
 
-    <!-----------------ORDER SUMMARY SECTION--------------->
-    <section class="order-summary-container">
-        <div class="order-summary-header">
-            <h1>ORDER SUMMARY</h1>
-            <h5>Cart Items: <span id="cart-count">0</span></h5>
-        </div>
-        <hr>
+            <h1>TRANSACTION PRCESSING</h1>
 
-        <div class="cart">
-            <div class="div-item-container" id="cart-items"> </div>
+            <h3>Please wait a moment, while we are verifying your transaction. You will receive confirmation to your
+                email and SMS once it has been verify. Thank you!</h3>
+            <h4>For other inquires and problems you may reach us on hygge_testemail@gmail.com and 0912-3456-798.</h4>
 
-            <hr>
-            <div class="price-summary" id="price-summary">
-                <div class="div-price">
-                    <p class="total-price">Subtotal:</p> <span id="subtotal-price">0</span>
-                </div>
-                <!-- <div class="div-price">
-                    <p class="total-price">Delivery Charge:</p> <span>100</span>
-                </div> -->
-                <!-- <div class="div-total-price">
-                    <p class="total-price">Total:</p> <span id="total-price">0</span>
-                </div> -->
-                <a href="adv-order-payment.html">
-                    <button class="checkout-btn" id="checkout-btn" disabled onclick="checkout()">Checkout</button>
-                </a>
-            </div>
+            <button class="btn-exit"><a href="../index.php">EXIT</a></button>
         </div>
     </section>
+
+
 
     <!------------Footer Section------------->
     <footer class="footer-section">
@@ -119,16 +97,16 @@
 
             <div class="footer-div">
                 <h3>Quick Links</h3>
-                <h4><a href="/index.html">Home</a></h4>
-                <h4><a href="../index.html/#about-section">About Us</a></h4>
-                <h4><a href="menu.html">Menu</a></h4>
-                <h4><a href="../index.html/#contact-section">Contact Us</a></h4>
+                <h4><a href="/index.php">Home</a></h4>
+                <h4><a href="../index.php/#about-section">About Us</a></h4>
+                <h4><a href="menu.php">Menu</a></h4>
+                <h4><a href="../index.php/#contact-section">Contact Us</a></h4>
             </div>
 
             <div class="footer-div">
                 <h3>Services</h3>
-                <h4><a href="reservation.html">Reserve a Table</a></h4>
-                <h4><a href="menu.html">Order Online</a></h4>
+                <h4><a href="reservation.php">Reserve a Table</a></h4>
+                <h4><a href="menu.php">Order Online</a></h4>
             </div>
 
             <div class="footer-div">
@@ -149,9 +127,6 @@
         </div>
 
     </footer>
-
-    <script src="../script/adv-order-menu.js"> </script>
-
 </body>
 
 </html>
