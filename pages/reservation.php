@@ -195,6 +195,10 @@
             alert('Reservation Successful!')
             window.history.replaceState(null, null, window.location.pathname)
         }
+        if(errorParams == 3){
+            alert('The limit of per time is 5 pax you might have gone beyond the limit!')
+            window.history.replaceState(null, null, window.location.pathname)
+        }
         document.getElementById('date').addEventListener('change', async function() {
              const date = this.value
              const api = await fetch(`../controller/reservationController.php?date=${date}&action=checkAvailablePaxPerTime`)

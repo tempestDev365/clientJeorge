@@ -13,6 +13,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         header("Location: ../pages/reservation.php?error=2");
         return;
     }
+    if(checkTimeReservation($conn, $date, $time, $num_of_people)){
+        echo "<script>alert('Reservation Full!')</script>";
+        header("Location: ../pages/reservation.php?error=3");
+        return;
+    }
     $qry = "INSERT INTO reservations_tbl (`name`,`time`,`date`,`number_of_people`,`cp_number`,`email_address`, `transactionRef`) VALUES (?, ?, ?, ?, ?,?,?)";
     $stmt = $conn->prepare($qry);
     $stmt->bindParam(1, $name);
@@ -36,6 +41,19 @@ function checkFullReservation($conn, $date){
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if($result['total'] >= 25){
+        return true;
+    }else{
+        return false;
+    }
+}
+function checkTimeReservation($conn, $date, $time, $num_of_people){
+    $qry = "SELECT sum(`number_of_people`) as total FROM reservations_tbl WHERE date = ? AND time = ?";
+    $stmt = $conn->prepare($qry);
+    $stmt->bindParam(1, $date);
+    $stmt->bindParam(2, $time);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($result['total'] + $num_of_people >= 5){
         return true;
     }else{
         return false;
