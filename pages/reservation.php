@@ -1,6 +1,7 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -78,20 +79,20 @@
         </div>
         <div class="form-section">
             <h2>RESERVATION</h2>
-            <form id="reservation-form">
+            <form id="reservation-form" method = "POST" action = "../controller/reservationController.php">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Enter your name" required>
+                    <input type="text" id="name" placeholder="Enter your name" name = "name" required>
                 </div>
 
                 <div class="row">
                     <div class="form-group">
                         <label for="date">Date</label>
-                        <input type="date" id="date" required>
+                        <input type="date" id="date" name = "date" required>
                     </div>
                     <div class="form-group">
                         <label for="time">Time</label>
-                        <select id="time" required>
+                        <select id="time" required name ='time'>">
                             <option value="12:00 PM">12:00 PM</option>
                             <option value="2:00 PM">2:00 PM</option>
                             <option value="4:00 PM">4:00 PM</option>
@@ -102,20 +103,21 @@
                     </div>
                     <div class="form-group">
                         <label for="people">No. of People</label>
-                        <input type="text" id="people" placeholder="Enter no. of people" required>
+                        <input type="text" id="people" name = "people" placeholder="Enter no. of people" required >
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="Enter your email" required>
+                        <input type="email" id="email" placeholder="Enter your email" name = "email" required>
                     </div>
                     <div class="form-group">
                         <label for="phone">Contact Number</label>
-                        <input type="text" id="contact" placeholder="Enter your contact number" required>
+                        <input type="text" id="contact" placeholder="Enter your contact number" name = "contact" required>
                     </div>
                 </div>
+                <input type="hidden" name = "transactionRef" id = "transactionRef" value = "">
 
                 <a href="transaction-processing.php">
                     <button type="submit" class="btn-book-a-table">BOOK A TABLE ONLY</button>
@@ -175,7 +177,32 @@
 
 
     <script src="../script/reservation.js"></script>
+    <script>
+        const numberOfPeople = document.querySelector('#people')
+        numberOfPeople.addEventListener('input', function () {
+           if(this.value > 24){
+                alert('Sorry, we only accept reservation for 24 people and below.')
+                this.value = ''
+           }
+        })
+        const errorParams = new URLSearchParams(window.location.search).get('error')
+        const successParams = new URLSearchParams(window.location.search).get('success')
+        if(errorParams == 2){
+            alert('Reservation Full!')
+            window.history.replaceState(null, null, window.location.pathname)
+        }
+        if(successParams == 1){
+            alert('Reservation Successful!')
+            window.history.replaceState(null, null, window.location.pathname)
+        }
+        document.getElementById('date').addEventListener('change', async function() {
+             const date = this.value
+             const api = await fetch(`../controller/reservationController.php?date=${date}&action=checkAvailablePaxPerTime`)
+             const data = await api.text()
+                document.getElementById('time').innerHTML = data
+        });
 
+    </script>
 
 </body>
 

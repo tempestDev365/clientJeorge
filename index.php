@@ -63,7 +63,7 @@
             </div>
 
             <button class="reserve-btn">
-                <a href="/pages/reservation.php">Reserve a Table</a>
+                <a href="./pages/reservation.php">Reserve a Table</a>
             </button>
 
         </div>
@@ -77,12 +77,12 @@
             <h1>Elevate Your Dining Experience</h1>
             <p>Experience the warmth of home with the taste of something extraordinary.</p>
             <div class="hero-buttons">
-                <a href="/pages/reservation.html" class="reserve-btn">Reserve a Table</a>
-                <a href="/pages/menu.html" class="order-btn">Order Online</a>
+                <a href="./pages/reservation.php" class="reserve-btn">Reserve a Table</a>
+                <a href="./pages/menu.php" class="order-btn">Order Online</a>
             </div>
         </div>
         <div class="hero-image ">
-            <img src="/img/food-image.jpg" class="img img-fluid" alt="Delicious food">
+            <img src="./img/food-image.jpg" class="img img-fluid" alt="Delicious food">
         </div>
     </section>
 
@@ -158,7 +158,7 @@
         <div class="signature-dishes-header">
             <div class="dish-header-div">
                 <h1>SIGNATURE DISHES</h1>
-                <a href="menu.html" class="signature-dishes-menu-btn">MENU</a>
+                <a href="./pages/menu.php" class="signature-dishes-menu-btn">MENU</a>
             </div>
             <hr>
             <p>"A Symphony of Flavors, Crafted to Perfection."</p>
