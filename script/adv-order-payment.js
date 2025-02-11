@@ -29,6 +29,7 @@ function displayCart() {
   // Update subtotal and total price (including service charge)
   document.getElementById("subtotal-price").textContent = subtotal;
   document.getElementById("total-price").textContent = subtotal / 2;
+  document.getElementById("total").value = subtotal;
   console.log(cartCount);
 }
 
@@ -52,59 +53,59 @@ window.onload = displayCart;
 //--------------INPUT FORM JS----------------------------//
 
 // Function to generate a unique transaction reference number
-function generateTransactionRef() {
-  const randomNum = Math.floor(Math.random() * 1000000);
-  document.getElementById("transactionRef").value = `#RSV${randomNum}`;
-}
+// function generateTransactionRef() {
+//   const randomNum = Math.floor(Math.random() * 1000000);
+//   document.getElementById("transactionRef").value = `#RSV${randomNum}`;
+// }
 
-generateTransactionRef();
-// Handle form submission
-document
-  .getElementById("adv-order-reservation-form")
-  .addEventListener("submit", function (e) {
-    e.preventDefault();
+// generateTransactionRef();
+// // Handle form submission
+// document
+//   .getElementById("adv-order-reservation-form")
+//   .addEventListener("submit", function (e) {
+//     e.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const contact = document.getElementById("contact").value;
-    const email = document.getElementById("email").value;
-    const date = document.getElementById("date").value;
-    const time = document.getElementById("time").value;
-    const people = document.getElementById("people").value;
-    const message = document.getElementById("message").value;
-    const paymentRef = document.getElementById("paymentRef").value;
-    const imageFile = document.getElementById("image").files[0];
+//     const name = document.getElementById("name").value;
+//     const contact = document.getElementById("contact").value;
+//     const email = document.getElementById("email").value;
+//     const date = document.getElementById("date").value;
+//     const time = document.getElementById("time").value;
+//     const people = document.getElementById("people").value;
+//     const message = document.getElementById("message").value;
+//     const paymentRef = document.getElementById("paymentRef").value;
+//     const imageFile = document.getElementById("image").files[0];
 
-    // Ensure image or payment reference number is provided
-    if (!imageFile && !paymentRef) {
-      alert("You must provide either an image or a payment reference number!");
-      return;
-    }
+//     // Ensure image or payment reference number is provided
+//     if (!imageFile && !paymentRef) {
+//       alert("You must provide either an image or a payment reference number!");
+//       return;
+//     }
 
-    const transactionRef = generateTransactionRef();
-    const dateCreated = new Date().toLocaleString();
+//     const transactionRef = generateTransactionRef();
+//     const dateCreated = new Date().toLocaleString();
 
-    // Store the data in local storage
-    const data = {
-      name,
-      contact,
-      email,
-      time,
-      date,
-      people,
-      message,
-      image: imageFile ? URL.createObjectURL(imageFile) : null,
-      paymentRef,
-      transactionRef,
-      dateCreated,
-    };
+//     // Store the data in local storage
+//     const data = {
+//       name,
+//       contact,
+//       email,
+//       time,
+//       date,
+//       people,
+//       message,
+//       image: imageFile ? URL.createObjectURL(imageFile) : null,
+//       paymentRef,
+//       transactionRef,
+//       dateCreated,
+//     };
 
-    let storedData = JSON.parse(localStorage.getItem("formData")) || [];
-    storedData.push(data);
-    localStorage.setItem("formData", JSON.stringify(storedData));
+//     let storedData = JSON.parse(localStorage.getItem("formData")) || [];
+//     storedData.push(data);
+//     localStorage.setItem("formData", JSON.stringify(storedData));
 
-    alert("Reservation submitted successfully!");
-    resetForm();
-  });
+//     alert("Reservation submitted successfully!");
+//     resetForm();
+//   });
 
 // Function to handle image upload and preview
 document.getElementById("image").addEventListener("change", function (e) {

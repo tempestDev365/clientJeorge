@@ -194,17 +194,17 @@
             window.history.replaceState(null, null, window.location.pathname)
         }
         if(errorParams == 3){
-            alert('The limit of per time is 5 pax you might have gone beyond the limit!')
+            alert('The limit of per time is 24 pax you might have gone beyond the limit!')
             window.history.replaceState(null, null, window.location.pathname)
         }
         document.getElementById('date').addEventListener('change', async function() {
              const date = this.value
              const api = await fetch(`../controller/reservationController.php?date=${date}&action=checkAvailablePaxPerTime`)
              const data = await api.text()
-                document.getElementById('time').innerHTML = data
+             document.getElementById('time').innerHTML = data
         });
         const form = document.getElementById('reservation-form')
-const transactionRef =document.getElementById('transactionRef')
+const transactionRef = document.getElementById('transactionRef')
 function generateTransactionRef() {
   const randomNum = Math.floor(Math.random() * 1000000);
   transactionRef.value = `#RSV${randomNum}`;

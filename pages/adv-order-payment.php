@@ -85,7 +85,7 @@
             <hr>
             <div class="price-summary" id="price-summary">
                 <div class="div-price">
-                    <p class="total-price">Total:</p> <span id="subtotal-price">0</span>
+                    <p class="total-price">Total:</p> <span id="subtotal-price"></span>
                 </div>
                 <!-- <div class="div-price">
                     <p class="total-price">Delivery Charge:</p> <span>100</span>
@@ -107,7 +107,7 @@
                     <h3>Reservation with Advance Order</h3>
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" id="name" placeholder="Enter your name" required>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
                     </div>
 
                     <div class="row">
@@ -142,7 +142,8 @@
                             <input type="text" id="contact" name = "contact" placeholder="Enter your contact number" required>
                         </div>
                     </div>
-
+                    <input type="hidden" name = "total" id = "total" value = "">
+                  <input type="hidden" name = "transactionRef" id = "transactioRef" value = "">
                     <div class="form-group">
                         <label for="message">Message</label>
                         <textarea id="message" rows="4" cols="50" name="comment"> </textarea>
@@ -160,7 +161,7 @@
                         <label for="paymentRef">Payment Reference Number</label>
                         <input type="text" id="paymentRef" name = "paymentRef"><br>
                     </div>
-
+               <input type="hidden" name= "transactionRef" id="transactionRef">
                     <div class="row">
                         <h5 class="note">
                             **for advance order you need to pay 50% of the total bill and the remaining bill will settle
@@ -286,6 +287,13 @@
              const data = await api.text()
                 document.getElementById('time').innerHTML = data
         });
+        const transactionRef =document.getElementById('transactionRef')
+function generateTransactionRef() {
+  const randomNum = Math.floor(Math.random() * 1000000);
+  transactionRef.value = `#RSV${randomNum}`;
+}
+
+form.addEventListener('submit', generateTransactionRef());
    </script>
 
 </body>

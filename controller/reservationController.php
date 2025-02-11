@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $email = $_POST['email'];
     $contact_number  = $_POST['contact'];
     $transactionRef = $_POST['transactionRef'];
-    if(checkFullReservation($conn, $date)){
+    if(checkFullReservation($conn, $date, $time)){
         echo "<script>alert('Reservation Full!')</script>";
         header("Location: ../pages/reservation.php?error=2");
         return;
@@ -34,13 +34,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 
 }
-function checkFullReservation($conn, $date){
-    $qry = "SELECT sum(`number_of_people`) as total FROM reservations_tbl WHERE date = ?";
+function checkFullReservation($conn, $date, $time){
+    $qry = "SELECT sum(`number_of_people`) as total FROM reservations_tbl WHERE date = ? AND time = ?";
     $stmt = $conn->prepare($qry);
     $stmt->bindParam(1, $date);
+    $stmt->bindParam(2, $time);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    if($result['total'] >= 25){
+    if($result['total'] >= 24){
         return true;
     }else{
         return false;
@@ -53,7 +54,7 @@ function checkTimeReservation($conn, $date, $time, $num_of_people){
     $stmt->bindParam(2, $time);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    if($result['total'] + $num_of_people > 6){
+    if($result['total'] + $num_of_people >= 24){
         return true;
     }else{
         return false;
@@ -73,7 +74,7 @@ function checkAvailablePaxPerTime($date){
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
             header("Content-Type: application/json");
 
-        if($result['total'] >= 5){
+        if($result['total'] >= 24){
             echo "<option value='$time' disabled>$time</option>";
 
         }else{

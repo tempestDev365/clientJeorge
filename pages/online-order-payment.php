@@ -102,7 +102,7 @@
     <!------------Reservation with Adv Order Section------------->
     <div class="reservation-container">
         <div class="form-section">
-            <form action="sumbit.php" method="POST" id="online-order-form" class="adv-order-reservation-form">
+            <form action="../controller/onlineOrderController.php" method="POST" id="online-order-form" class="adv-order-reservation-form">
                 <div class="input-div">
                     <h3>Order Online</h3>
                     <div class="form-group">
@@ -146,7 +146,9 @@
                         <label for="paymentRef">Payment Reference Number</label>
                         <input type="text" name="paymentRef" id="paymentRef"><br>
                     </div>
-
+                    <input type="hidden" name="total" id="total" value="">
+                    <input type="hidden" name="transactionRef" id="transactionRef" value="">
+                 <input type="hidden" name = "orders" id="orders" value="">
                     <div class="button-div">
                         <a>
                             <button type="submit" class="btn-confirm" onclick="confirmPayment()">CONFIRM PAYMENT</button>
@@ -222,7 +224,23 @@
 
     <script src="../script/online-order-payment.js"></script>
     <script src="../script/online-order-menu.js"></script>
+    <script>
+        const orders = JSON.parse(localStorage.getItem('cart'));
+        const items = {
+            items: orders
+        }
+        document.getElementById('orders').value = JSON.stringify(items);
+const transactionRef = document.getElementById('transactionRef');
+        function generateTransactionRef() {
+  const randomNum = Math.floor(Math.random() * 1000000);
+    transactionRef.value = randomNum;
+} 
+const form =document.getElementById('online-order-form');
+form.addEventListener('submit', () => {
+generateTransactionRef()
 
+});
+    </script>
 
 </body>
 

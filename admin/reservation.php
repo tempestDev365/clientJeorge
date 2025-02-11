@@ -1,3 +1,10 @@
+<?php
+include '../database/connection.php';
+$qry = "SELECT * FROM reservations_tbl";
+$result = $conn->query($qry);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +46,6 @@
                     <thead class="table-dark">
                         <tr>
                             <th>ID</th>
-                            <th>DATE CREATED</th>
                             <th>NAME</th>
                             <th>DATE</th>
                             <th>TIME</th>
@@ -52,22 +58,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>91</td>
-                            <td>2/6/2025</td>
-                            <td>John Doe</td>
-                            <td>2/6/2025</td>
-                            <td>11:44 AM</td>
-                            <td>PEOPLE</td>
-                            <td>0999999999</td>
-                            <td>johndoe@gmail.com</td>
-                            <td>232323</td>
-                            <td>PENDING</td>
-                            <td>
-                                <button class="btn btn-sm btn-success">APPROVE</button>
-                                <button class="btn btn-sm btn-danger">CANCEL</button>
-                            </td>
-                        </tr>
+                       <?php
+                     foreach($result as $row){
+    echo "<tr>";
+    echo "<td>".$row['id']."</td>";
+    echo "<td>".$row['name']."</td>";
+    echo "<td>".$row['date']."</td>";
+    echo "<td>".$row['time']."</td>";
+    echo "<td>".$row['number_of_people']."</td>";
+    echo "<td>".$row['cp_number']."</td>";
+    echo "<td>".$row['email_address']."</td>";
+    echo "<td>".$row['transactionRef']."</td>";
+    echo "<td>pending</td>";
+    echo "<td>";
+    echo "<a href='reservation_view.php?id=".$row['id']."' class='btn btn-primary btn-sm'>View</a>";
+    echo "<a href='reservation_edit.php?id=".$row['id']."' class='btn btn-warning btn-sm'>Edit</a>";
+    echo "<a href='reservation_delete.php?id=".$row['id']."' class='btn btn-danger btn-sm'>Delete</a>";
+    echo "</td>";
+    echo "</tr>";
+}
+                       ?>
                     </tbody>
                 </table>
             </div>
