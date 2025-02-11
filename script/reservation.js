@@ -3,14 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
   let today = new Date().toISOString().split("T")[0];
   document.getElementById("date").setAttribute("min", today);
 });
-const transactionRef = document.getElementById("transactionRef");
 //--------------INPUT FORM JS----------------------------//
 
 // Function to generate a unique transaction reference number
-function generateTransactionRef() {
-  const randomNum = Math.floor(Math.random() * 1000000);
-  transactionRef.value = `#RSV${randomNum}`;
-}
 
 // Handle form submission
 // document.getElementById('reservation-form').addEventListener('submit', function (e) {

@@ -53,20 +53,13 @@ function checkTimeReservation($conn, $date, $time, $num_of_people){
     $stmt->bindParam(2, $time);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    if($result['total'] + $num_of_people >= 5){
+    if($result['total'] + $num_of_people > 6){
         return true;
     }else{
         return false;
     }
 }
-function getRemainingAvailablePax($conn, $date){
-    $qry = "SELECT sum(`number_of_people`) as total FROM reservations_tbl WHERE date = ?";
-    $stmt = $conn->prepare($qry);
-    $stmt->bindParam(1, $date);
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    return 25 - $result['total'];
-}
+
 function checkAvailablePaxPerTime($date){
     include "../database/connection.php";
     $times = ['12:00 PM', '2:00 PM', '4:00 PM', '6:00 PM', '8:00 PM', '10:00 PM'];

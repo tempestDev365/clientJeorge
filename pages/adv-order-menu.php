@@ -151,7 +151,9 @@
     </footer>
 
     <script src="../script/adv-order-menu.js"> </script>
-
+   <script>
+    
+   </script>
 </body>
 
 </html>

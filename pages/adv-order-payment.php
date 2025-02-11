@@ -102,7 +102,7 @@
     <!------------Reservation with Adv Order Section------------->
     <div class="reservation-container">
         <div class="form-section">
-            <form id="adv-order-reservation-form" class="adv-order-reservation-form">
+            <form id="adv-order-reservation-form" class="adv-order-reservation-form" method="POST" action = "../controller/reservationWithAdvanceOrderController.php">
                 <div class="input-div">
                     <h3>Reservation with Advance Order</h3>
                     <div class="form-group">
@@ -113,11 +113,11 @@
                     <div class="row">
                         <div class="form-group">
                             <label for="date">Date</label>
-                            <input type="date" id="date" required>
+                            <input type="date" id="date" name = "date" required>
                         </div>
                         <div class="form-group">
                             <label for="time">Time</label>
-                            <select id="time" required>
+                            <select id="time" name = "time" required>
                                 <option value="12:00 PM">12:00 PM</option>
                                 <option value="2:00 PM">2:00 PM</option>
                                 <option value="4:00 PM">4:00 PM</option>
@@ -128,18 +128,18 @@
                         </div>
                         <div class="form-group">
                             <label for="people">No. of People</label>
-                            <input type="text" id="people" placeholder="Enter no. of people" required>
+                            <input type="text" id="people" placeholder="Enter no. of people" name = "people" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" placeholder="Enter your email" required>
+                            <input type="email" id="email" name = "email" placeholder="Enter your email" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Contact Number</label>
-                            <input type="text" id="contact" placeholder="Enter your contact number" required>
+                            <input type="text" id="contact" name = "contact" placeholder="Enter your contact number" required>
                         </div>
                     </div>
 
@@ -152,13 +152,13 @@
                         <p class="sub-message">Please upload the screenshot of your payment or input the payment
                             reference number.</p>
                         <label for="image">Upload Image</label>
-                        <input type="file" id="image" accept="image/*"><br>
+                        <input type="file" id="image" name = "image" accept="image/*"><br>
                         <div id="imagePreviewContainer"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="paymentRef">Payment Reference Number</label>
-                        <input type="text" id="paymentRef"><br>
+                        <input type="text" id="paymentRef" name = "paymentRef"><br>
                     </div>
 
                     <div class="row">
@@ -251,7 +251,42 @@
     </footer>
 
     <script src="../script/adv-order-payment.js"></script>
+   <script>
+      const items = JSON.parse(localStorage.getItem('cart'));
 
+      const form = document.getElementById('adv-order-reservation-form');
+      const cartItems = {
+            items: items
+      }
+      form.innerHTML += `<input type="hidden" name="cartItems" value='${JSON.stringify(cartItems)}'>`;
+      const numberOfPeople = document.querySelector('#people')
+        numberOfPeople.addEventListener('input', function () {
+           if(this.value > 24){
+                alert('Sorry, we only accept reservation for 24 people and below.')
+                this.value = ''
+           }
+        })
+        const errorParams = new URLSearchParams(window.location.search).get('error')
+        const successParams = new URLSearchParams(window.location.search).get('success')
+        if(errorParams == 2){
+            alert('Reservation Full!')
+            window.history.replaceState(null, null, window.location.pathname)
+        }
+        if(successParams == 1){
+            alert('Reservation Successful!')
+            window.history.replaceState(null, null, window.location.pathname)
+        }
+        if(errorParams == 3){
+            alert('The limit of per time is 5 pax you might have gone beyond the limit!')
+            window.history.replaceState(null, null, window.location.pathname)
+        }
+        document.getElementById('date').addEventListener('change', async function() {
+             const date = this.value
+             const api = await fetch(`../controller/reservationWithAdvanceOrderController.php?date=${date}&action=checkAvailablePaxPerTime`)
+             const data = await api.text()
+                document.getElementById('time').innerHTML = data
+        });
+   </script>
 
 </body>
 

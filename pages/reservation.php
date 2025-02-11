@@ -174,9 +174,7 @@
         </div>
 
     </footer>
-
-
-    <script src="../script/reservation.js"></script>
+<script src  = "../script/reservation.js"></script>
     <script>
         const numberOfPeople = document.querySelector('#people')
         numberOfPeople.addEventListener('input', function () {
@@ -205,7 +203,13 @@
              const data = await api.text()
                 document.getElementById('time').innerHTML = data
         });
-
+        const form = document.getElementById('reservation-form')
+const transactionRef =document.getElementById('transactionRef')
+function generateTransactionRef() {
+  const randomNum = Math.floor(Math.random() * 1000000);
+  transactionRef.value = `#RSV${randomNum}`;
+}
+form.addEventListener('submit', generateTransactionRef());
     </script>
 
 </body>
