@@ -1,3 +1,13 @@
+<?php
+function getReservationsWithAdvOrder(){
+    include '../database/connection.php';
+    $qry = "SELECT * FROM reservations_with_adv_order_tbl";
+    $result = $conn->query($qry);
+    return $result;
+}
+$reservations = getReservationsWithAdvOrder();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,34 +68,40 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>91</td>
-                                <td>2/6/2025</td>
-                                <td>John Doe</td>
-                                <td>2/6/2025</td>
-                                <td>11:44 AM</td>
-                                <td>PEOPLE</td>
-                                <td>0999999999</td>
-                                <td>johndoe@gmail.com</td>
-                                <td>
-                                    <button class="btn" data-bs-toggle="modal" data-bs-target="#viewMessage" >view</button>
-                                </td>
-                                <td>
-                                    <button class="btn" data-bs-toggle="modal" data-bs-target="#viewImg" >view</button>  
-                                </td>
-                                <td>232323</td>
-                                <td>burger</td>
-                                <td>2000</td>
-                                <td>232323</td>
-                                <td>PENDING</td>
-                                <td>
-                                    <button class="btn btn-sm btn-success">APPROVE</button>
-                                    <button class="btn btn-sm btn-danger">CANCEL</button>
-                                </td>
-                            </tr>
+                            <?php
+                        foreach($reservations as $row){
+                            $orders = json_decode($row['orders'],true);
+                            
+                            echo "<tr>";
+                            echo "<td>".$row['id']."</td>";
+                            echo "<td>".$row['date_Created']."</td>";
+                            echo "<td>".$row['name']."</td>";
+                            echo "<td>".$row['date']."</td>";
+                            echo "<td>".$row['time']."</td>";
+                            echo "<td>".$row['people']."</td>";
+                            echo "<td>".$row['contact']."</td>";
+                            echo "<td>".$row['email']."</td>";
+                            echo '<td><button class="btn" data-bs-toggle="modal" data-bs-target="#viewMessage" >view</button></td>';
+                            echo '<td><button class="btn" data-bs-toggle="modal" data-bs-target="#viewImg" >view</button></td>';
+                            echo "<td>".$row['paymentRef']."</td>";
+                            echo "<td> <ul>
+                             <li>Order List</li>";
+                            foreach($orders['items'] as $order){
+                                echo "<li>".$order['name']." x ".$order['quantity']." ".$order['price']."</li>";
+                            }
+                            echo "</ul></td>
 
-                            
-                            
+                            ";    
+                            echo "<td>".$row['total']."</td>";
+                            echo "<td>".$row['transaction_ref']."</td>";
+                            echo "<td>".$row['status']."</td>";
+                            echo "<td>";
+                            echo "<button class='btn btn-sm btn-success'>APPROVE</button>";
+                            echo "<button class='btn btn-sm btn-danger'>CANCEL</button>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                            ?>
                         </tbody>
                     </table>
             </div>

@@ -22,8 +22,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         header("Location: ../pages/adv-order-payment.php?error=3");
         return;
     }
-   $qry = "INSERT INTO `reservations_with_adv_order_tbl`( `name`, `date`, `time`, `people`, `email`, `contact`, `message`, `paymentRef`, `orders`, `total`, `transactionRef`, `image`, `date_Created`)
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,NOW())";
+   $qry = "INSERT INTO `reservations_with_adv_order_tbl`( `name`, `date`, `time`, `people`, `email`, `contact`, `message`, `paymentRef`, `orders`, `total`, `transactionRef`, `image`, `date_Created`, `status`)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,NOW(),'pending')";
     $stmt = $conn->prepare($qry);
     $stmt->bindParam(1, $name);
     $stmt->bindParam(2, $date);

@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         header("Location: ../pages/reservation.php?error=3");
         return;
     }
-    $qry = "INSERT INTO reservations_tbl (`name`,`time`,`date`,`number_of_people`,`cp_number`,`email_address`, `transactionRef`) VALUES (?, ?, ?, ?, ?,?,?)";
+    $qry = "INSERT INTO reservations_tbl (`name`,`time`,`date`,`number_of_people`,`cp_number`,`email_address`, `transactionRef`,`status`) VALUES (?, ?, ?, ?, ?,?,?,''pending')";
     $stmt = $conn->prepare($qry);
     $stmt->bindParam(1, $name);
     $stmt->bindParam(2, $time);

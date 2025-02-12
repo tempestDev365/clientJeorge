@@ -69,11 +69,10 @@ $result = $conn->query($qry);
     echo "<td>".$row['cp_number']."</td>";
     echo "<td>".$row['email_address']."</td>";
     echo "<td>".$row['transactionRef']."</td>";
-    echo "<td>pending</td>";
+    echo "<td>".$row['status']."</td>";
     echo "<td>";
-    echo "<a href='reservation_view.php?id=".$row['id']."' class='btn btn-primary btn-sm'>View</a>";
-    echo "<a href='reservation_edit.php?id=".$row['id']."' class='btn btn-warning btn-sm'>Edit</a>";
-    echo "<a href='reservation_delete.php?id=".$row['id']."' class='btn btn-danger btn-sm'>Delete</a>";
+    echo "<a href='../controller/adminController.php?id=".$row['id']."&action=reveservationapproved' class='btn btn-primary btn-sm'>Approve</a>";
+    echo "<a href='../controller/adminController.php?id=".$row['id']."&action=revesevationrejected' class='btn btn-danger btn-sm'>Cancel</a>";
     echo "</td>";
     echo "</tr>";
 }
