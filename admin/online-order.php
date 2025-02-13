@@ -1,3 +1,14 @@
+<?php
+function getOnlineOrder(){
+    include '../database/connection.php';
+    $qry = "SELECT * FROM online_order_tbl";
+    $stmt = $conn->prepare($qry);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+$orders = getOnlineOrder();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,26 +63,29 @@
                         </tr>
                     </thead> 
                     <tbody>
-                        <tr>
-                            <td>91</td>
-                            <td>2/6/2025</td>
-                            <td>John Doe</td>
-                            <td>2/6/2025</td>
-                            <td>11:44 AM</td>
-                            <td>PEOPLE</td>
-                            <td>
-                                <button class="btn" data-bs-toggle="modal" data-bs-target="#viewImg" >view</button>  
-                            </td>
-                            <td>johndoe@gmail.com</td>
-                            <td>232323</td>
-                            <th></th>
-                            <th></th>
-                            <td>PENDING</td>
-                            <td>
-                                <button class="btn btn-sm btn-success">APPROVE</button>
-                                <button class="btn btn-sm btn-danger">CANCEL</button>
-                            </td>
-                        </tr>
+                     
+                        <?php
+                        foreach($orders as $order){
+                            echo '<tr>';
+                            echo '<td>'.$order['id'].'</td>';
+                            echo '<td>'.$order['date_Created'].'</td>';
+                            echo '<td>'.$order['name'].'</td>';
+                            echo '<td>'.$order['address'].'</td>';
+                            echo '<td>'.$order['email'].'</td>';
+                            echo '<td>'.$order['contact'].'</td>';
+                            echo '<td><button class="btn" data-bs-toggle="modal" data-bs-target="#viewImg" onclick = "viewImage('.$order['id'].')" >view</button></td>';
+                            echo '<td>'.$order['paymentRef'].'</td>';
+                            echo '<td>'.$order['orders'].'</td>';
+                            echo '<td>'.$order['total'].'</td>';
+                            echo '<td>'.$order['transactionRef'].'</td>';
+                            echo '<td>'.$order['status'].'</td>';
+                            echo '<td>';
+                            echo '<a href = "../controller/adminController.php?id='.$order['id'].'&action=onlineOrderApproved" class="btn btn-sm btn-success">APPROVE</a>';
+                            echo '<a href = "../controller/adminController.php?id='.$order['id'].'&action=onlineOrderRejected" class="btn btn-sm btn-danger">CANCEL</a>';
+                            echo '</td>';
+                            echo '</tr>';
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -88,7 +102,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="../img/dinein.jpg" alt="food" class="img-fluid">
+                    <img src="" alt="food" class="img-fluid">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -116,6 +130,15 @@
         new DataTable('#table', {
             responsive: true
         });
+        async function viewImage(id){
+            const response = await fetch(`../controller/viewController.php?id=${id}&action=onlineOrderViewImage`);
+            const data = await response.json();
+            populateImage(data.image);
+        }
+        function populateImage(data){
+            const img = document.querySelector('#viewImg img');
+            img.src = `data:image/jpeg;base64,${data}`;
+        }
     </script>
 
     <!--NAVIGATION JS-->

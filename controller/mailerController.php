@@ -9,7 +9,7 @@ try {
     //Server settings
     $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.@gmail.com';                     //Set the SMTP server to send through
+    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'perez.menard.nomiddlename@gmail.com';                     //SMTP username
     $mail->Password   = 'anyk glij oknf xgbw';                               //SMTP password
@@ -19,9 +19,11 @@ try {
     //Recipients
     $mail->setFrom('perez.menard.nomiddlename@gmail.com', 'HYGGE');
     $mail->addAddress($recipient);     //Add a recipient
- 
-
-
+   $orders = "";
+   $items = json_decode($orderlist,true);
+   foreach($items['items'] as $item){
+       $orders .= "<li>".$item['name']." x ".$item['quantity']." ".$item['price']."</li>";
+    } 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'HYYGE RESTAURANT RESERVATION';
@@ -34,7 +36,7 @@ try {
     <li>Date: {$reservationDate} </li>
     <li>Time: {$time} </li>
     <li>Number of People: {$number_of_people} </li>
-    <li>Order List: {$orderlist} </li>
+    <li>Order List: <ul>{$orders}</ul> </li>
     <li>Transaction Reference: {$transactionRef} </li>
     <li>Total: {$total} </li>
     </ul>

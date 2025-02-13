@@ -102,7 +102,7 @@
     <!------------Reservation with Adv Order Section------------->
     <div class="reservation-container">
         <div class="form-section">
-            <form action="../controller/onlineOrderController.php" method="POST" id="online-order-form" class="adv-order-reservation-form">
+            <form action="../controller/onlineOrderController.php" method="POST" id="online-order-form" class="adv-order-reservation-form" enctype="multipart/form-data">
                 <div class="input-div">
                     <h3>Order Online</h3>
                     <div class="form-group">

@@ -1,5 +1,30 @@
 <?php
 include "../database/connection.php";
+function resizeImage($file, $max_width, $max_height) {
+    list($width, $height) = getimagesize($file);
+    $ratio = $width / $height;
+
+    if ($max_width / $max_height > $ratio) {
+        $max_width = $max_height * $ratio;
+    } else {
+        $max_height = $max_width / $ratio;
+    }
+
+    $src = imagecreatefromstring(file_get_contents($file));
+    $dst = imagecreatetruecolor($max_width, $max_height);
+
+    imagecopyresampled($dst, $src, 0, 0, 0, 0, $max_width, $max_height, $width, $height);
+
+    ob_start();
+    imagejpeg($dst);
+    $data = ob_get_contents();
+    ob_end_clean();
+
+    imagedestroy($src);
+    imagedestroy($dst);
+
+    return $data;
+}
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $name = $_POST['name'];
     $date = date('Y-m-d', strtotime($_POST['date']));
@@ -8,7 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $email = $_POST['email'];
     $contact_number  = $_POST['contact'];
     $transactionRef = $_POST['transactionRef'];
-    $image = base64_encode($_POST['image']) ?? "";
+    $image = isset($_FILES['image']['tmp_name']) && !empty($_FILES['image']['tmp_name']) ? base64_encode(resizeImage($_FILES['image']['tmp_name'],250,250)) : "no images";
     $cartItems = $_POST['cartItems'];
     $paymentRef = $_POST['paymentRef'];
     $transactionRef = $_POST['transactionRef'];

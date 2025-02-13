@@ -102,7 +102,7 @@
     <!------------Reservation with Adv Order Section------------->
     <div class="reservation-container">
         <div class="form-section">
-            <form id="adv-order-reservation-form" class="adv-order-reservation-form" method="POST" action = "../controller/reservationWithAdvanceOrderController.php">
+            <form id="adv-order-reservation-form" class="adv-order-reservation-form" method="POST" action = "../controller/reservationWithAdvanceOrderController.php" enctype="multipart/form-data">
                 <div class="input-div">
                     <h3>Reservation with Advance Order</h3>
                     <div class="form-group">
@@ -153,7 +153,7 @@
                         <p class="sub-message">Please upload the screenshot of your payment or input the payment
                             reference number.</p>
                         <label for="image">Upload Image</label>
-                        <input type="file" id="image" name = "image" accept="image/*"><br>
+                        <input type="file" id="image" name = "image" accept="image/jpeg"><br>
                         <div id="imagePreviewContainer"></div>
                     </div>
 

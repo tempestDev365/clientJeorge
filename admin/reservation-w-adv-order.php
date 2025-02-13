@@ -81,8 +81,8 @@ $reservations = getReservationsWithAdvOrder();
                             echo "<td>".$row['people']."</td>";
                             echo "<td>".$row['contact']."</td>";
                             echo "<td>".$row['email']."</td>";
-                            echo '<td><button class="btn" data-bs-toggle="modal" data-bs-target="#viewMessage" >view</button></td>';
-                            echo '<td><button class="btn" data-bs-toggle="modal" data-bs-target="#viewImg" >view</button></td>';
+                            echo "<td><button class='btn' data-bs-toggle='modal' data-bs-target='#viewMessage' onclick='viewMessageOrder(".$row['id'].")'>view</button></td>";
+                            echo "<td><button class='btn' data-bs-toggle='modal' data-bs-target='#viewImg' onclick='viewImage(".$row['id'].")' >view</button></td>";
                             echo "<td>".$row['paymentRef']."</td>";
                             echo "<td> <ul>
                              <li>Order List</li>";
@@ -93,11 +93,11 @@ $reservations = getReservationsWithAdvOrder();
 
                             ";    
                             echo "<td>".$row['total']."</td>";
-                            echo "<td>".$row['transaction_ref']."</td>";
+                            echo "<td>".$row['transactionRef']."</td>";
                             echo "<td>".$row['status']."</td>";
                             echo "<td>";
-                            echo "<button class='btn btn-sm btn-success'>APPROVE</button>";
-                            echo "<button class='btn btn-sm btn-danger'>CANCEL</button>";
+                            echo "<a href = '../controller/adminController.php?id=".$row['id']."&action=reservationAdvOrderApproved' class='btn btn-sm btn-success'>APPROVE</a>";
+                            echo "<a href = '../controller/adminController.php?id=".$row['id']."&action=reservationAdvOrderRejected' class='btn btn-sm btn-danger'>CANCEL</a>";
                             echo "</td>";
                             echo "</tr>";
                         }
@@ -118,7 +118,7 @@ $reservations = getReservationsWithAdvOrder();
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Message here</p>
+                    <p class="message"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -135,7 +135,7 @@ $reservations = getReservationsWithAdvOrder();
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="../img/dinein.jpg" alt="food" class="img-fluid">
+                    <img src  id = "paymentImage" class="img-fluid paymentImage" alt="">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -170,6 +170,24 @@ $reservations = getReservationsWithAdvOrder();
         { targets: "_all", className: "text-wrap" } // Ensures text wraps
     ]
 });
+async function viewImage(id) {
+    const api = await fetch(`../controller/viewController.php?id=${id}&action=reservationWithAdvOrderViewImage`);
+    const data = await api.json();
+    console.log(data);
+    populateImage(data.image);
+}
+async function viewMessageOrder(id) {
+    const api = await fetch(`../controller/viewController.php?id=${id}&action=reservationWithAdvOrderViewMessage`);
+    const data = await api.json();
+    console.log(data);
+    document.querySelector('.message').textContent = data.message;
+}
+function populateImage(imageData) {
+    document.getElementById('paymentImage').src = `data:image/jpeg;base64,${imageData}`;
+}
+function populateMessage(message) { 
+    document.querySelector('.message').textContent = message;
+}
     </script>
 
 </body>
