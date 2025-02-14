@@ -49,27 +49,27 @@ function onlineOrderRejected($id){
 }
 
 if($action == 'revesevationrejected'){
-    rejectReservation($id);
     header("Location: ../admin/reservation.php");
+    rejectReservation($id);
 }
 if($action == 'reveservationapproved'){
-    reservationApproved($id);
     header("Location: ../admin/reservation.php");
+    reservationApproved($id);
 }
 if($action == 'reservationAdvOrderApproved'){
-    reservationWithAdvOrderApproved($id);
     header("Location: ../admin/reservation-w-adv-order.php");
+    reservationWithAdvOrderApproved($id);
 }
 if($action == 'reservationAdvOrderRejected'){
-    reservationWithAdvOrderRejected($id);
     header("Location: ../admin/reservation-w-adv-order.php");
+    reservationWithAdvOrderRejected($id);
 }
 if($action == 'onlineOrderApproved'){
-    onlineOrderApproved($id);
     header("Location: ../admin/online-order.php");
+    onlineOrderApproved($id);
 }
 if($action == 'onlineOrderRejected'){
-    onlineOrderRejected($id);
     header("Location: ../admin/online-order.php");
+    onlineOrderRejected($id);
 }
 ?>
