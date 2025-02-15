@@ -1,8 +1,8 @@
 <?php
+require '../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-require '../vendor/autoload.php';
 function sendMail($recipient, $name,$reservationDate,$time,$number_of_people,$orderlist = "None",$transactionRef, $total = 0){
 $mail = new PHPMailer(true);
 try {
@@ -20,7 +20,7 @@ try {
     $mail->setFrom('perez.menard.nomiddlename@gmail.com', 'HYGGE');
     $mail->addAddress($recipient);     //Add a recipient
    $orders = "";
-   $items = json_decode($orderlist,true);
+   $items = json_decode($orderlist,true) ?? [];
    foreach($items['items'] as $item){
        $orders .= "<li>".$item['name']." x ".$item['quantity']." ".$item['price']."</li>";
     } 
