@@ -16,6 +16,9 @@ function rejectReservation($id){
     include '../database/connection.php';
     $qry = "UPDATE reservations_tbl SET status = 'Rejected' WHERE id = '$id'";
     $conn->query($qry);
+        header("Location: ../admin/reservation.php");
+
+    
 }
 
 function reservationWithAdvOrderApproved($id){
@@ -27,11 +30,16 @@ function reservationWithAdvOrderApproved($id){
     $row['date'],$row['time'],$row['people'],$row['orders'],$row['transactionRef'],$row['total']);
     $qry = "UPDATE reservations_with_adv_order_tbl SET status = 'Approved' WHERE id = '$id'";
     $conn->query($qry);
+    header("Location: ../admin/reservation.php");
+
+    
 }
 function reservationWithAdvOrderRejected($id){
     include '../database/connection.php';
     $qry = "UPDATE reservations_with_adv_order_tbl SET status = 'Rejected' WHERE id = '$id'";
     $conn->query($qry);
+    header("Location: ../admin/online-order.php");
+
 }
 function onlineOrderApproved($id){
     include '../database/connection.php';
@@ -41,35 +49,33 @@ function onlineOrderApproved($id){
     sendMail($row['email'],$row['name'],"none","none","none",$row['orders'],$row['transactionRef'],$row['total']);
     $qry = "UPDATE online_order_tbl SET status = 'Approved' WHERE id = '$id'";
     $conn->query($qry);
+    header("Location: ../admin/online-order.php");
+
 }
 function onlineOrderRejected($id){
     include '../database/connection.php';
     $qry = "UPDATE online_order_tbl SET status = 'Rejected' WHERE id = '$id'";
     $conn->query($qry);
+    header("Location: ../admin/online-order.php");
+
 }
 
 if($action == 'revesevationrejected'){
     rejectReservation($id);
-    header("Location: ../admin/reservation.php");
 }
 if($action == 'reveservationapproved'){
     reservationApproved($id);
-    header("Location: ../admin/reservation.php");
 }
 if($action == 'reservationAdvOrderApproved'){
     reservationWithAdvOrderApproved($id);
-    header("Location: ../admin/reservation-w-adv-order.php");
 }
 if($action == 'reservationAdvOrderRejected'){
     reservationWithAdvOrderRejected($id);
-    header("Location: ../admin/reservation-w-adv-order.php");
 }
 if($action == 'onlineOrderApproved'){
     onlineOrderApproved($id);
-    header("Location: ../admin/online-order.php");
 }
 if($action == 'onlineOrderRejected'){
     onlineOrderRejected($id);
-    header("Location: ../admin/online-order.php");
 }
 ?>
