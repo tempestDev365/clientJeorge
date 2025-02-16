@@ -1,5 +1,6 @@
 <?php
 include "../database/connection.php";
+
 function resizeImage($file, $max_width, $max_height) {
     list($width, $height) = getimagesize($file);
     $ratio = $width / $height;
@@ -25,6 +26,7 @@ function resizeImage($file, $max_width, $max_height) {
 
     return $data;
 }
+
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $name = $_POST['name'];
     $date = date('Y-m-d', strtotime($_POST['date']));
@@ -39,15 +41,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $transactionRef = $_POST['transactionRef'];
     $total = $_POST['total'];
     $message = $_POST['comment'];
+
     if(checkFullReservation($conn, $date, $time)){
       header("Location: ../pages/adv-order-payment.php?error=2");
-        return;
+        exit;
     }
     if(checkTimeReservation($conn, $date, $time, $num_of_people)){
         header("Location: ../pages/adv-order-payment.php?error=3");
-        return;
+        exit;
     }
-   $qry = "INSERT INTO `reservations_with_adv_order_tbl`( `name`, `date`, `time`, `people`, `email`, `contact`, `message`, `paymentRef`, `orders`, `total`, `transactionRef`, `image`, `date_Created`, `status`)
+    
+    $qry = "INSERT INTO `reservations_with_adv_order_tbl`( `name`, `date`, `time`, `people`, `email`, `contact`, `message`, `paymentRef`, `orders`, `total`, `transactionRef`, `image`, `date_Created`, `status`)
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,NOW(),'pending')";
     $stmt = $conn->prepare($qry);
     $stmt->bindParam(1, $name);
@@ -63,10 +67,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $stmt->bindParam(11, $transactionRef);
     $stmt->bindParam(12, $image);
     $stmt->execute();
+    
     header("Location: ../pages/transaction-processing.php?transactionRef=$transactionRef");
-
-
+    exit;
 }
+
 function checkFullReservation($conn, $date, $time){
     $qry = "SELECT sum(`number_of_people`) as total FROM reservations_tbl WHERE date = ? AND time = ?";
     $stmt = $conn->prepare($qry);
@@ -74,12 +79,10 @@ function checkFullReservation($conn, $date, $time){
     $stmt->bindParam(2, $time);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    if($result['total'] >= 24){
-        return true;
-    }else{
-        return false;
-    }
+
+    return ($result['total'] ?? 0) >= 24;
 }
+
 function checkTimeReservation($conn, $date, $time, $num_of_people){
     $qry = "SELECT sum(`number_of_people`) as total FROM reservations_tbl WHERE date = ? AND time = ?";
     $stmt = $conn->prepare($qry);
@@ -87,11 +90,10 @@ function checkTimeReservation($conn, $date, $time, $num_of_people){
     $stmt->bindParam(2, $time);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    if($result['total'] + $num_of_people > 25){
-        return true;
-    }else{
-        return false;
-    }
+    
+    $currentTotal = $result['total'] ?? 0;
+
+    return ($currentTotal + $num_of_people) > 25;
 }
 
 function checkAvailablePaxPerTime($date){
@@ -105,22 +107,19 @@ function checkAvailablePaxPerTime($date){
         $stmt->bindParam(2, $time);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            header("Content-Type: application/json");
 
-        if($result['total'] >= 24){
+        if(($result['total'] ?? 0) >= 24){
             echo "<option value='$time' disabled>$time</option>";
-
         }else{
             echo "<option value='$time'>$time</option>";
         }
-       
     }
-    
 }
-$action = $_GET['action'];
-$date = $_GET['date'];
 
- if($action == "checkAvailablePaxPerTime"){
+$action = isset($_GET['action']) ? $_GET['action'] : null;
+$date = isset($_GET['date']) ? $_GET['date'] : null;
+
+if($action == "checkAvailablePaxPerTime" && $date) {
     checkAvailablePaxPerTime($date);
 }
-?>
+?>                  ```         
