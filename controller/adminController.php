@@ -11,6 +11,8 @@ function reservationApproved($id){
     $row['date'],$row['time'],0,"none",$row['transactionRef'],0);
     $qry = "UPDATE reservations_tbl SET status = 'Approved' WHERE id = '$id'";
     $conn->query($qry);
+            header("Location: ../admin/reservation.php");
+
 }
 function rejectReservation($id){
     include '../database/connection.php';
@@ -62,20 +64,32 @@ function onlineOrderRejected($id){
 
 if($action == 'revesevationrejected'){
     rejectReservation($id);
+    echo "<script>window.location.href = '../admin/reservation.php'</script>";
+
 }
 if($action == 'reveservationapproved'){
     reservationApproved($id);
+    echo "<script>window.location.href = '../admin/reservation.php'</script>";
+
 }
 if($action == 'reservationAdvOrderApproved'){
     reservationWithAdvOrderApproved($id);
+    echo "<script>window.location.href = '../admin/reservation-w-adv-order.php'</script>";
+
 }
 if($action == 'reservationAdvOrderRejected'){
     reservationWithAdvOrderRejected($id);
+    echo "<script>window.location.href = '../admin/reservation-w-adv-order.php'</script>";
+
 }
 if($action == 'onlineOrderApproved'){
     onlineOrderApproved($id);
+    echo "<script>window.location.href = '../admin/online-order.php'</script>";
+
 }
 if($action == 'onlineOrderRejected'){
     onlineOrderRejected($id);
+    echo "<script>window.location.href = '../admin/online-order.php'</script>";
+
 }
 ?>

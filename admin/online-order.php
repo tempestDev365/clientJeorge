@@ -53,6 +53,7 @@ $orders = getOnlineOrder();
                             <th>ADDRESS</th>
                             <th>EMAIL</th>
                             <th>CONTACT</th>
+                            <th>MESSAGE</th>
                             <th>IMAGE</th>
                             <th>PAYMENT REF</th>
                             <th>ORDERS</th>
@@ -63,9 +64,9 @@ $orders = getOnlineOrder();
                         </tr>
                     </thead> 
                     <tbody>
-                     
                         <?php
                         foreach($orders as $order){
+                            $items = json_decode($order['orders'], true);
                             echo '<tr>';
                             echo '<td>'.$order['id'].'</td>';
                             echo '<td>'.$order['date_Created'].'</td>';
@@ -73,9 +74,16 @@ $orders = getOnlineOrder();
                             echo '<td>'.$order['address'].'</td>';
                             echo '<td>'.$order['email'].'</td>';
                             echo '<td>'.$order['contact'].'</td>';
+                            echo '<td>'.$order['message'].'</td>';
                             echo '<td><button class="btn" data-bs-toggle="modal" data-bs-target="#viewImg" onclick = "viewImage('.$order['id'].')" >view</button></td>';
                             echo '<td>'.$order['paymentRef'].'</td>';
-                            echo '<td>'.$order['orders'].'</td>';
+                             echo "<td> <ul>
+                             <li>Order List</li>";
+                            foreach($items['items'] as $orders){
+                                echo "<li>".$orders['name']." x ".$orders['quantity']." ".$orders['price']."</li>";
+                            }
+                            echo "</ul></td>
+                            "; 
                             echo '<td>'.$order['total'].'</td>';
                             echo '<td>'.$order['transactionRef'].'</td>';
                             echo '<td>'.$order['status'].'</td>';

@@ -231,10 +231,10 @@
         }
         document.getElementById('orders').value = JSON.stringify(items);
 const transactionRef = document.getElementById('transactionRef');
-        function generateTransactionRef() {
+      function generateTransactionRef() {
   const randomNum = Math.floor(Math.random() * 1000000);
-    transactionRef.value = randomNum;
-} 
+  transactionRef.value = `#DLV${randomNum}`;
+}
 const form =document.getElementById('online-order-form');
 form.addEventListener('submit', () => {
 generateTransactionRef()

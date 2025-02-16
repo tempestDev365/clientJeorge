@@ -21,9 +21,12 @@ try {
     $mail->addAddress($recipient);     //Add a recipient
    $orders = "";
    $items = json_decode($orderlist,true) ?? [];
-   foreach($items['items'] as $item){
+   if(count($items) > 0){
+      foreach($items['items'] as $item){
        $orders .= "<li>".$item['name']." x ".$item['quantity']." ".$item['price']."</li>";
-    } 
+    }
+    }
+       
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'HYYGE RESTAURANT RESERVATION';
